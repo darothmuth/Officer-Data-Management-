@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+  <meta charset="UTF-8">
+  <title>កម្មវិធីគ្រប់គ្រងទិន្នន័យមន្រ្តី</title>
+ <link rel="stylesheet" href="style.css">
+  
+</head>
+<body>
+
+  <div id="welcomeScreen">
+    <h1>សូមស្វាគមន៍មកកាន់កម្មវិធីគ្រប់គ្រងទិន្នន័យមន្រ្តី</h1>
+    <button onclick="enterApp()">ចូលកម្មវិធី</button>
+  </div>
+
+  <div id="mainApp" style="display:none;">
+    <h2>បញ្ជីមន្រ្តី</h2>
+    <table id="officerTable">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>ឈ្មោះ</th>
+          <th>ភេទ</th>
+          <th>នាយកដ្ឋាន</th>
+          <th>តួនាទី</th>
+          <th>ប្រាក់បៀវត្ស</th>
+          <th>ស្ថានភាពប្រាក់បៀវត្ស</th>
+          <th>ស្ថានភាពប្រាក់បេសកកម្ម</th>
+          <th>វត្តមាន</th>
+          <th>លំហែមាតុភាព</th>
+          <th>វត្តមានប្រចាំឆ្នាំ</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <div class="controls">
+      <h3>ជ្រើសរើសមន្រ្តី</h3>
+      <select id="officerSelect" onchange="showOfficerDetails(); toggleUpdateButton();">
+        <option value="all">All</option>
+      </select>
+
+      <div class="details">
+        <input type="text" id="idBox" placeholder="ID" disabled>
+        <input type="text" id="nameBox" placeholder="ឈ្មោះ" disabled>
+        <input type="text" id="genderBox" placeholder="ភេទ" disabled>
+        <input type="text" id="roleBox" placeholder="តួនាទី" disabled>
+        <input type="text" id="deptBox" placeholder="នាយកដ្ឋាន" disabled>
+        <input type="text" id="salaryBox" placeholder="ប្រាក់បៀវត្ស" disabled>
+        <input type="text" id="salaryStatusBox" placeholder="ស្ថានភាពប្រាក់បៀវត្ស" disabled>
+        <input type="text" id="missionBox" placeholder="ស្ថានភាពបេសកកម្ម" disabled>
+        <input type="text" id="attendanceBox" placeholder="វត្តមាន" disabled>
+        <input type="text" id="maternityBox" placeholder="លំហែមាតុភាព" disabled>
+        <input type="text" id="annualBox" placeholder="វត្តមានប្រចាំឆ្នាំ" disabled>
+      </div>
+
+      <h3>កែប្រែស្ថានភាព</h3>
+      <select id="salaryStatusSelect">
+        <option value="">ស្ថានភាពប្រាក់បៀវត្ស</option>
+        <option>✓ ប្រាក់បៀវត្សលើកទី១បានទូទាត់រួចរាល់</option>
+        <option>✓ ប្រាក់បៀវត្សលើកទី២បានទូទាត់រួចរាល់</option>
+      </select>
+
+      <select id="missionStatusSelect">
+        <option value="">ស្ថានភាពបេសកកម្ម</option>
+        <option>✓ ប្រាក់បេសកកម្មលើកទី១បានទូទាត់រួចរាល់</option>
+        <option>✓ ប្រាក់បេសកកម្មលើកទី២បានទូទាត់រួចរាល់</option>
+        <option>✓ ប្រាក់បេសកកម្មលើកទី៣បានទូទាត់រួចរាល់</option>
+        <option>× មិនមានតួនាទីក្នុងបេសកកម្ម</option>
+      </select>
+<select id="attendanceSelect">
+  <option value="">វត្តមាន</option>
+  <option>មានវត្តមាន</option>
+  <option>អវត្តមានដោយមានច្បាប់</option>
+  <option>អវត្តមានដោយអត់ច្បាប់</option>
+</select>
+
+<select id="maternitySelect">
+  <option value="">លំហែមាតុភាព</option>
+  <option>មិនទាន់</option>
+  <option>បានសម្រាក់លំហែមាតុភាព</option>
+</select>
+
+<button id="updateBtn" onclick="applySelections()">Update</button>
+
+<h3>ស្វែងរកតាមលេខ ID</h3>
+<input type="text" id="searchID" placeholder="បញ្ចូលលេខ ID">
+<button onclick="searchByID()">ស្វែងរក</button>
+<button onclick="deleteOfficer()">លុប</button>
+
+<h3>បេសកកម្ម</h3>
+<select id="missionFilter">
+  <option value="">ជ្រើសរើស</option>
+  <option value="✓ ប្រាក់បេសកកម្មលើកទី១បានទូទាត់រួចរាល់">✓ ប្រាក់បេសកកម្មលើកទី១បានទូទាត់រួចរាល់</option>
+  <option value="✓ ប្រាក់បេសកកម្មលើកទី២បានទូទាត់រួចរាល់">✓ ប្រាក់បេសកកម្មលើកទី២បានទូទាត់រួចរាល់</option>
+  <option value="✓ ប្រាក់បេសកកម្មលើកទី៣បានទូទាត់រួចរាល់">✓ ប្រាក់បេសកកម្មលើកទី៣បានទូទាត់រួចរាល់</option>
+  <option value="× មិនមានតួនាទីក្នុងបេសកកម្ម">× មិនមានតួនាទីក្នុងបេសកកម្ម</option>
+</select>
+<button onclick="filterByMission()">Show</button>
+<button onclick="clearFilters()">Clear</button>
+
+<h3>វត្តមានប្រចាំឆ្នាំ</h3>
+<select id="attendanceFilter">
+  <option value="">ជ្រើសរើស</option>
+  <option value="active">មន្រ្តីសកម្ម</option>
+  <option value="moderate">អវត្តមានអប្បបរមា</option>
+  <option value="excess">អវត្តមានលើសកំណត់</option>
+</select>
+<button onclick="filterByAttendance()">Show</button>
+<button onclick="clearAttendanceFilter()">Clear</button>
+
+<h3>បញ្ចូលមន្រ្តីថ្មី</h3>
+      <input type="text" id="newName" placeholder="ឈ្មោះមន្រ្តីថ្មី">
+      <input type="text" id="newGender" placeholder="ភេទ (ស្រី/ប្រុស)">
+      <input type="text" id="newDept" placeholder="នាយកដ្ឋាន">
+     
+      <button onclick="addNewOfficer()">បញ្ចូល</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

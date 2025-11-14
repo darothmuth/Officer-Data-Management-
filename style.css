@@ -1,0 +1,67 @@
+body {
+  font-family: 'Khmer OS', sans-serif;
+  background: linear-gradient(to right, #fdfcfb, #e2d1c3);
+
+  margin: 0;
+  padding: 20px;
+  color: #333;
+}
+
+h1 {
+  color: #2c3e50;
+  text-align: center;
+  padding: 300px;
+}
+h2{
+  color: #aa1b60;
+  text-align: center;
+}
+input, select, button {
+  font-family: inherit;
+  padding: 8px 12px;
+  margin: 6px 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #7a3546;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  padding: 20px;
+}
+
+button:hover {
+  background-color: #471b1d;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: white;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+}
+
+th {
+  background-color: #662f40;
+  color: white;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.alert {
+  color: red;
+  font-weight: bold;
+}
